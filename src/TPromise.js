@@ -7,9 +7,13 @@ export default class TPromise {
     this.executor = executor;
     this.parameters = parameters;
 
-    setTimeout(() => {
-      this.makeWorker();
-    });
+    if (window.Worker) {
+      setTimeout(() => {
+        this.makeWorker();
+      });
+    } else {
+      return new Promise(executor);
+    }
   }
 
   onWorkerMessage(e) {
