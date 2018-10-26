@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Timeout Example</title>
+  </head>
+  <body>
+    <div id="log"></div>
+    <script src="../../lib/thread-promises.min.js"></script>
+    <script type="text/javascript">
+      function log(data) {
+        console.log(data)
+        document.getElementById("log").innerHTML += `<br>${data}`
+      }
+      function delay(ms) {
+        return new TPromise((resolve, ms) => {
+          setTimeout(resolve, ms)
+        }, ms)
+      }
+
+      log("Starting 3 seconds delay")
+      delay(3000)
+        .then(() => {
+          log("resolved in other thread")
+        })
+    </script>
+  </body>
+</html>

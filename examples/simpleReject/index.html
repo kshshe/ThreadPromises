@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Timeout Example</title>
+  </head>
+  <body>
+    <div id="log"></div>
+    <script src="../../lib/thread-promises.min.js"></script>
+    <script type="text/javascript">
+      function log(data) {
+        console.log(data)
+        document.getElementById("log").innerHTML += `<br>${data}`
+      }
+      function delay(ms) {
+        return new TPromise((resolve, reject, ms) => {
+          setTimeout(() => {
+            reject("error")
+          }, ms)
+        }, ms)
+      }
+
+      log("Starting 3 seconds reject delay")
+      delay(3000)
+        .then(() => {
+          log("Resolved")
+        })
+        .catch((data) => {
+          log("Rejected with error: " + data)
+        })
+    </script>
+  </body>
+</html>
