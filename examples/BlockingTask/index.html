@@ -11,6 +11,20 @@
     </style>
   </head>
   <body>
+    <pre><code>
+// When you click "Block main thread for 10 seconds":
+setTimeout(() => {
+  const time = (new Date()).getTime();
+  while ((new Date()).getTime() - time < 10000) {}
+})
+
+// When you click "Block second thread for 10 seconds":
+new TPromise((resolve) => {
+  const time = (new Date()).getTime();
+  while ((new Date()).getTime() - time < 10000) {}
+  resolve()
+})
+</code></pre>
     <button id="blockMain">Block main thread for 10 seconds</button>
     <button id="blockOther">Block second thread for 10 seconds</button>
     <h4>Script is trying to add line to log every second</h4>
