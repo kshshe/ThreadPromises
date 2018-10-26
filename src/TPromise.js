@@ -58,12 +58,14 @@ export default class TPromise {
           type: "onFullfilledCallback",
           data
         })
+        self.close();
       }
       function onRejectedCallback(data) {
         self.postMessage({
           type: "onRejectedCallback",
           data
         })
+        self.close();
       }
       const executor = getExecutor();
       executor(${parameters})
