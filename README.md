@@ -6,6 +6,10 @@ Promises running in separated threads
 
 Now it support only then and catch methods. But it works.
 
+## It creates a thread for every task so it not blocking main thread and it could run in parallel
+
+![screenshot](./Threads.png)
+
 # Installing
 
 ```
