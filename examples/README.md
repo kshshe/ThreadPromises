@@ -1,4 +1,4 @@
-# Template Usage
+# Examples Usage
 ```
 cd ThreadPromises && serve ./
 ```
