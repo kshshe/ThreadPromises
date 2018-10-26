@@ -28,6 +28,8 @@ import TPromise from "thread-promises"
 
 # Examples
 
+[All examples](https://github.com/kshshe/ThreadPromises/tree/master/examples)
+
 [Expample of making blocking job on main thread and on TPromise's thread](https://github.com/kshshe/ThreadPromises/tree/master/examples/BlockingTask)
 
 [Simple resolve on timeout](https://github.com/kshshe/ThreadPromises/tree/master/examples/simpleTimeout)
