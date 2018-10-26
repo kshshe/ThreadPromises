@@ -6,7 +6,7 @@ Promises running in separated threads
 
 Now it support only then and catch methods.
 
-#Installing
+# Installing
 
 ```
 <script src="/lib/thread-promises.min.js"></script>
