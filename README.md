@@ -38,11 +38,22 @@ import TPromise from "thread-promises"
 
 [All examples](https://github.com/kshshe/ThreadPromises/tree/master/examples)
 
-[Expample of making blocking job on main thread and on TPromise's thread](https://github.com/kshshe/ThreadPromises/tree/master/examples/BlockingTask)
+Expample of making blocking job on main thread and on TPromise's thread
 
-[Simple resolve on timeout](https://github.com/kshshe/ThreadPromises/tree/master/examples/simpleTimeout)
+[demo](http://htmlpreview.github.io/?https://github.com/kshshe/ThreadPromises/blob/master/examples/BlockingTask/index.html)
+and [code](https://github.com/kshshe/ThreadPromises/tree/master/examples/BlockingTask)
 
-[Simple reject on timeout](https://github.com/kshshe/ThreadPromises/tree/master/examples/simpleReject)
+
+Simple resolve on timeout
+
+[demo](http://htmlpreview.github.io/?https://github.com/kshshe/ThreadPromises/blob/master/examples/simpleTimeout/index.html)
+and [code](https://github.com/kshshe/ThreadPromises/tree/master/examples/simpleTimeout)
+
+
+Simple reject on timeout
+
+[demo](http://htmlpreview.github.io/?https://github.com/kshshe/ThreadPromises/blob/master/examples/simpleReject/index.html)
+and [code](https://github.com/kshshe/ThreadPromises/tree/master/examples/simpleReject)
 
 # Usage
 
