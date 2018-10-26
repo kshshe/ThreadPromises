@@ -21,6 +21,12 @@ Now it support only then and catch methods. But it works.
 ### Or
 
 ```
+<script src="https://cdn.jsdelivr.net/npm/thread-promises/lib/thread-promises.min.js"></script>
+```
+
+### Or
+
+```
 npm i --save thread-promises
 ```
 
