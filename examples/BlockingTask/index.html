@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Thread-Blocking Example</title>
+    <style>
+      #log {
+        max-height: calc(100vh - 100px);
+        overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="blockMain">Block main thread for 10 seconds</button>
+    <button id="blockOther">Block second thread for 10 seconds</button>
+    <h4>Script is trying to add line to log every second</h4>
+    <div id="log"></div>
+    <script src="../../lib/thread-promises.min.js"></script>
+    <script type="text/javascript">
+      let logCount = 0;
+      function log(data, color = "black") {
+        data = logCount++ + ": " + data;
+        document.getElementById("log").innerHTML = `<span style="color: ${color}">${data}</span><br>${document.getElementById("log").innerHTML}`
+      }
+
+      setInterval(() => {
+        log("Main thread is not blocked")
+      }, 1000)
+
+      document.getElementById("blockMain").addEventListener("click", () => {
+        log("Main thread is blocked", "red")
+        log("Main thread is now making empty loop for 10 seconds", "red")
+
+        setTimeout(() => {
+          const time = (new Date()).getTime();
+          while ((new Date()).getTime() - time < 10000) {}
+          log("Main thread is unblocked!", "green")
+        })
+      })
+
+      document.getElementById("blockOther").addEventListener("click", () => {
+        function blockOther() {
+          return new TPromise((resolve) => {
+            const time = (new Date()).getTime();
+            while ((new Date()).getTime() - time < 10000) {}
+            resolve()
+          })
+        }
+        log("Other thread is blocked", "red")
+        log("Other thread is now making empty loop for 10 seconds", "red")
+        blockOther()
+          .then(() => {
+            log("Other thread is unblocked!", "green")
+          })
+      })
+    </script>
+  </body>
+</html>
