@@ -2,6 +2,8 @@
 
 Promises running in separated threads
 
+[![NPM](https://nodei.co/npm/thread-promises.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/thread-promises/)
+
 # It is an early version.
 
 Now it support only then and catch methods. But it works.
