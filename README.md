@@ -33,12 +33,12 @@ function delay(ms) {
   }, ms)
 }
 
-log("Starting 3 seconds reject delay")
+console.log("Starting 3 seconds reject delay")
 delay(3000)
   .then(() => {
-    log("Resolved")
+    console.log("Resolved")
   })
   .catch((data) => {
-    log("Rejected with error: " + data)
+    console.log("Rejected with error: " + data)
   })
 ```

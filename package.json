@@ -1,5 +1,5 @@
 {
-  "name": "threadpromises",
+  "name": "thread-promises",
   "version": "0.0.1",
   "description": "Promises running in separated threads",
   "main": "index.js",
