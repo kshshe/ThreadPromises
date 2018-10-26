@@ -68,7 +68,6 @@ export default class TPromise {
       const executor = getExecutor();
       executor(${parameters})
     `;
-    console.log(workerFunction);
     return workerFunction;
   }
 

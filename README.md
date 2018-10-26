@@ -6,6 +6,22 @@ Promises running in separated threads
 
 Now it support only then and catch methods.
 
+#Installing
+
+```
+<script src="/lib/thread-promises.min.js"></script>
+```
+
+Or
+
+```
+npm i --save thread-promises
+```
+
+```
+import TPromise from "thread-promises"
+```
+
 # Example
 
 ```

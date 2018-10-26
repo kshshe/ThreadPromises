@@ -1,2 +1,3 @@
 import TPromise from "./src/TPromise";
-export default TPromise;
+
+window.TPromise = TPromise;
