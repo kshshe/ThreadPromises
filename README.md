@@ -2,6 +2,14 @@
 
 Promises running in separated threads
 
+
+```
+new TPromise(resolve => {
+    resolve("Look ma, I am multithread JavaScript!")
+})
+```
+
+
 [![NPM](https://nodei.co/npm/thread-promises.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/thread-promises/)
 
 # It is an early version.
