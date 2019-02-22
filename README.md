@@ -91,7 +91,7 @@ import TPromise from "thread-promises"
 
 # Examples
 
-[th-sort](https://github.com/kshshe/t-sort) is a simple sorting library that can show how fast it can be if you use threads
+[th-sort](https://github.com/kshshe/t-sort) is a simple non-blocking sorting library
 
 [All examples](https://github.com/kshshe/ThreadPromises/tree/master/examples)
 
