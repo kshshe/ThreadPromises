@@ -10,6 +10,7 @@ export default class TPromise {
     if (window.Worker) {
       setTimeout(() => {
         this.makeWorker();
+        this.startWorker();
       });
     } else {
       return new Promise(executor);
@@ -40,19 +41,16 @@ export default class TPromise {
     };
   }
 
+  startWorker() {
+    this.worker.postMessage({
+      haveOnFullfilledCallback: !!this.onFullfilledCallback,
+      haveOnRejectedCallback: !!this.onRejectedCallback,
+      parameters: this.parameters,
+    });
+  }
+
   makeWorkerFunction() {
     const executor = this.executor.toString();
-    let parameters = [];
-    if (this.onFullfilledCallback) {
-      parameters.push("onFullfilledCallback");
-    }
-    if (this.onRejectedCallback) {
-      parameters.push("onRejectedCallback");
-    }
-    if (this.parameters.length > 0) {
-      parameters.push(this.parameters);
-    }
-    parameters = parameters.join(", ");
     const workerFunction = `
       function getExecutor() {
         return (${executor})
@@ -72,7 +70,23 @@ export default class TPromise {
         self.close();
       }
       const executor = getExecutor();
-      executor(${parameters})
+      self.onmessage = function ({
+        data: {
+          haveOnFullfilledCallback,
+          haveOnRejectedCallback,
+          parameters,
+        }
+      }) {
+        let executorArguments = [];
+        if (haveOnFullfilledCallback) {
+          executorArguments.push(onFullfilledCallback);
+        }
+        if (haveOnRejectedCallback) {
+          executorArguments.push(onRejectedCallback);
+        }
+        executorArguments = [...executorArguments, ...(parameters || [])]
+        executor(...executorArguments);
+      }
     `;
     return workerFunction;
   }
