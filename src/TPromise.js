@@ -8,7 +8,7 @@ module.exports = class TPromise {
     this.executor = executor;
     this.parameters = parameters;
 
-    if (window.Worker) {
+    if (typeof window !== "undefined" && window.Worker) {
       setTimeout(() => {
         this.createWorker();
         this.startWorker();
