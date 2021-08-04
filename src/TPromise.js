@@ -1,15 +1,16 @@
-export default class TPromise {
-  constructor(executor, ...parameters) {
-    this.executor = null;
-    this.onFullfilledCallback = null;
-    this.onRejectedCallback = null;
+import { getFunctionBody } from "./getFunctionBody";
 
+export default class TPromise {
+  onFullfilledCallback = () => {};
+  onRejectedCallback = () => {};
+
+  constructor(executor, ...parameters) {
     this.executor = executor;
     this.parameters = parameters;
 
     if (window.Worker) {
       setTimeout(() => {
-        this.makeWorker();
+        this.createWorker();
         this.startWorker();
       });
     } else {
@@ -21,74 +22,37 @@ export default class TPromise {
     console.log(e);
   }
 
-  makeWorker() {
-    var blob = new Blob([this.makeWorkerFunction()]);
+  createWorker() {
+    var blob = new Blob([this.createWorkerFunction()]);
     const U = window.URL || window.webkitURL;
     var blobURL = window.URL.createObjectURL(blob);
     this.worker = new Worker(blobURL);
-    this.worker.onmessage = e => {
-      const { data, type } = e.data;
-      switch (type) {
-        case "onFullfilledCallback":
-          this.onFullfilledCallback(data);
-          break;
-        case "onRejectedCallback":
-          this.onRejectedCallback(data);
-          break;
-        default:
-          break;
-      }
-    };
+    this.worker.onmessage = this.handleMessage.bind(this);
+  }
+
+  handleMessage(e) {
+    const { data, type } = e.data;
+    switch (type) {
+      case "onFullfilledCallback":
+        this.onFullfilledCallback(data);
+        break;
+      case "onRejectedCallback":
+        this.onRejectedCallback(data);
+        break;
+      default:
+        break;
+    }
   }
 
   startWorker() {
     this.worker.postMessage({
-      haveOnFullfilledCallback: !!this.onFullfilledCallback,
-      haveOnRejectedCallback: !!this.onRejectedCallback,
       parameters: this.parameters,
     });
   }
 
-  makeWorkerFunction() {
+  createWorkerFunction() {
     const executor = this.executor.toString();
-    const workerFunction = `
-      function getExecutor() {
-        return (${executor})
-      }
-      function onFullfilledCallback(data) {
-        self.postMessage({
-          type: "onFullfilledCallback",
-          data
-        })
-        self.close();
-      }
-      function onRejectedCallback(data) {
-        self.postMessage({
-          type: "onRejectedCallback",
-          data
-        })
-        self.close();
-      }
-      const executor = getExecutor();
-      self.onmessage = function ({
-        data: {
-          haveOnFullfilledCallback,
-          haveOnRejectedCallback,
-          parameters,
-        }
-      }) {
-        let executorArguments = [];
-        if (haveOnFullfilledCallback) {
-          executorArguments.push(onFullfilledCallback);
-        }
-        if (haveOnRejectedCallback) {
-          executorArguments.push(onRejectedCallback);
-        }
-        executorArguments = [...executorArguments, ...(parameters || [])]
-        executor(...executorArguments);
-      }
-    `;
-    return workerFunction;
+    return getFunctionBody(executor);
   }
 
   then(callback) {

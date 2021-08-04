@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './index.js',
+  entry: './browsers.js',
   mode: "production",
   output: {
     path: path.resolve('lib'),
