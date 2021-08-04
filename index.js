@@ -1,3 +1,3 @@
-import TPromise from "./src/TPromise";
+const TPromise = require("./src/TPromise");
 
-export default TPromise;
+module.exports = TPromise;

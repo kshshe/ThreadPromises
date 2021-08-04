@@ -1,6 +1,6 @@
-import { getFunctionBody } from "./getFunctionBody";
+const getFunctionBody = require("./getFunctionBody");
 
-export default class TPromise {
+module.exports = class TPromise {
   onFullfilledCallback = () => {};
   onRejectedCallback = () => {};
 
@@ -64,4 +64,4 @@ export default class TPromise {
     this.onRejectedCallback = callback;
     return this;
   }
-}
+};

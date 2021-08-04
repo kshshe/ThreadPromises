@@ -1,4 +1,4 @@
-export const getFunctionBody = (executor) => `
+module.exports = (executor) => `
   function getExecutor() {
       return (${executor});
   }

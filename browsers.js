@@ -1,3 +1,3 @@
-import TPromise from "./src/TPromise";
+const TPromise = require("./src/TPromise");
 
 window.TPromise = TPromise;
