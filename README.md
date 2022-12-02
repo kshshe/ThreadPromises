@@ -13,11 +13,11 @@ new TPromise((resolve) => {
   - [Simple](#simple)
   - [In async function](#in-async-function)
 - [Installing](#installing)
-  - [Or](#or)
-  - [Or](#or-1)
+    - [Or](#or)
+    - [Or](#or-1)
 - [Examples](#examples)
 
-[![NPM](https://nodei.co/npm/thread-promises.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/thread-promises/)
+[![npm version](https://badge.fury.io/js/thread-promises.svg)](https://badge.fury.io/js/thread-promises)
 
 It creates a thread for every task so it not blocking main thread and it could run in parallel
 
