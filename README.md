@@ -17,7 +17,7 @@ new TPromise((resolve) => {
     - [Or](#or-1)
 - [Examples](#examples)
 
-[![npm version](https://badge.fury.io/js/thread-promises.svg)](https://badge.fury.io/js/thread-promises)
+[![npm version](https://badge.fury.io/js/thread-promises.svg)](https://badge.fury.io/js/thread-promises) ![npm type definitions](https://img.shields.io/npm/types/thread-promises) ![GitHub top language](https://img.shields.io/github/languages/top/kshshe/ThreadPromises)
 
 It creates a thread for every task so it not blocking main thread and it could run in parallel
 
